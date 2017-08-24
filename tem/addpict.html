@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>我的范后台</title>
+<meta name="description" content="" />
+<meta name="keywords" content="Admin,Template" />
+<meta http-equiv="X-UA-Compatible" content="IE=7"/>
+<!-- Favicons --> 
+<link rel="shortcut icon" type="image/png" HREF="/img/favicons/favicon.png"/>
+<link rel="icon" type="image/png" HREF="/img/favicons/favicon.png"/>
+<link rel="apple-touch-icon" HREF="/img/favicons/apple.png" />
+<!-- Main Stylesheet --> 
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
+<!-- Colour Schemes
+Default colour scheme is blue. Uncomment prefered stylesheet to use it.
+<link rel="stylesheet" href="/css/brown.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="/css/gray.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="/css/green.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/css/pink.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="/css/red.css" type="text/css" media="screen" />
+-->
+<!-- Your Custom Stylesheet --> 
+<link rel="stylesheet" href="/css/custom.css" type="text/css" />
+<!--swfobject - needed only if you require <video> tag support for older browsers -->
+<!-- jQuery with plugins -->
+<link href="http://www.haobao.com/frontend/css/smoothness/jquery-ui-1.8.13.custom.css" rel="stylesheet" />
+<script type="text/javascript" SRC="http://www.haobao.com/frontend/js/global-min.js"></script>
+<!-- <script type="text/javascript" SRC="/js/upjs/jquery-1.4.2.min.js"></script> -->
+<script type="text/javascript" src="/js/upjs/swfobject.js"></script>
+<script type="text/javascript" src="/js/upjs/jquery.uploadify.v2.1.4.min.js"></script>
+<!-- Internet Explorer Fixes --> 
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
+<script src="/js/html5.js"></script>
+<![endif]-->
+<!--Upgrade MSIE5.5-7 to be compatible with MSIE8: http://ie7-js.googlecode.com/svn/version/2.1(beta3)/IE8.js -->
+<!--[if lt IE 8]>
+<script src="/js/IE8.js"></script>
+<![endif]-->
+<!--[if lte IE 7]><script src="http://www.haobao.com/frontend/js/json2-min.js"></script><![endif]-->
+<style>
+.manu { PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px; TEXT-ALIGN: center; font-size:12px;}
+
+.manu A {BORDER-RIGHT: #eee 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #eee 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; MARGIN: 2px; BORDER-LEFT: #eee 1px solid; COLOR: #036cb4; PADDING-TOP: 2px; BORDER-BOTTOM: #eee 1px solid; TEXT-DECORATION: none
+
+}
+
+.manu A:hover { BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; BORDER-LEFT: #999 1px solid; COLOR: #666; BORDER-BOTTOM: #999 1px solid}
+
+.manu A:active {BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; BORDER-LEFT: #999 1px solid; COLOR: #666; BORDER-BOTTOM: #999 1px solid}
+
+.manu .current {BORDER-RIGHT: #036cb4 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #036cb4 1px solid; PADDING-LEFT: 5px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; MARGIN: 2px; BORDER-LEFT: #036cb4 1px solid; COLOR: #fff; PADDING-TOP: 2px; BORDER-BOTTOM: #036cb4 1px solid; BACKGROUND-COLOR: #036cb4
+
+}
+
+.manu .disabled {BORDER-RIGHT: #eee 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #eee 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; MARGIN: 2px; BORDER-LEFT: #eee 1px solid; COLOR: #ddd; PADDING-TOP: 2px; BORDER-BOTTOM: #eee 1px solid
+
+}
+    .cf{zoom:1;}.cf:after{content:'.';display:block;visibility:hidden;clear:both;height:0;}
+    #exam{position:relative;float:left;border:1px solid #dcdcdc;overflow:hidden;}
+    #exam .file{}
+    #bars div{margin:5px 0;float:left;}
+    
+    .hot{border:1px #000 solid;width:60px;height:60px;_background:#fff}
+    .gosee{cursor:pointer;width:55px;height:53px;background:url("http://www.haobao.com/frontend_new/images/n.png") no-repeat scroll 0 -70px transparent}
+    .ui-resizable-se,.ui-resizable-sw,.ui-resizable-ne,.ui-resizable-nw{border:1px #000 solid;background:#ddd;width:7px;height:7px;}
+    .ui-resizable-se{right:-5px;bottom:-5px;}
+    
+    .gosee-on,.hot-on{border:1px red solid;}
+</style>
+<style>
+.uploadifyQueueItem {
+	font: 11px Verdana, Geneva, sans-serif;
+	border: 2px solid #E5E5E5;
+	background-color: #F5F5F5;
+	margin-top: 5px;
+	padding: 10px;
+	width: 350px;
+}
+.uploadifyError {
+	border: 2px solid #FBCBBC !important;
+	background-color: #FDE5DD !important;
+}
+.uploadifyQueueItem .cancel {
+	float: right;
+}
+.uploadifyProgress {
+	background-color: #FFFFFF;
+	border-top: 1px solid #808080;
+	border-left: 1px solid #808080;
+	border-right: 1px solid #C5C5C5;
+	border-bottom: 1px solid #C5C5C5;
+	margin-top: 10px;
+	width: 100%;
+}
+.uploadifyProgressBar {
+	background-color: #0099FF;
+	width: 1px;
+	height: 3px;
+}
+#fileQueue {
+	width: 500px;
+	height: 100px;
+	overflow: auto;
+	border: 1px solid #E5E5E5;
+	margin-bottom: 10px;
+}
+
+
+#exam{
+    position:relative;overflow:hidden;
+}
+</style>
+
+<script>
+function sub() {
+
+    
+        var title = $("#title1").val();
+        var email = $("#email").val();
+        var des = $("#des").val();
+        var img = $("#img").val();
+        var mag = $("#mag").val();
+        var result = $("#result").html();
+
+        if(mag==''){
+
+        alert('请选择所属杂志');
+        return false;
+
+        }
+
+        if(result==''){
+
+        alert('请先获取结果');
+        return false;
+
+        }
+
+        //alert(result.title);
+
+        //alert(userid);
+           $.ajax({
+		type: "GET",
+		url: "/insertpict/",
+		//data: "title="+title+"&email="+email+"&des="+des+"&img="+img+"&mag="+mag+"&result="+result,
+        data : {
+    title : title,
+    email : email,
+    des : des,
+    img : img,
+    mag : mag,
+    result : result
+},
+        dataType: "html", 
+		success: function(msg){
+        
+		if(msg=='ok'){
+
+        alert('添加成功');
+        window.location.reload();
+       
+        }else{
+         alert('失败');
+        }
+								}
+				});
+      
+
+      
+
+
+
+        
+        
+        
+        }
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#uploadify").uploadify({
+		'uploader'       : '/js/upjs/uploadify.swf',
+        'method'         : 'get',
+		'script'         : '{{ url }}/uploadfy1/',
+        //'checkScript'    : 'http://211.157.105.39:8081/uploadfy/',
+		'cancelImg'      : '/js/upjs/cancel.png',
+		'folder'         : '/Home/pic/AutoPic/EPic',
+		'queueID'        : 'fileQueue',
+		'auto'           : true,
+		'multi'          : true,
+        onComplete       : function(event,queueID,fileObj,data){
+            var ah = [
+                '<div id="bars" class="cf">',
+                    '<div class="hot fn-hot">图片热点</div><div class="gosee fn-gosee"></div><div><button class="del-item">删除</button></div>',
+                '</div>',
+                '<div id="exam"><img class="file" src="http://www.wodfan.com/images/pictorial/' + data + '" /></div>',
+                '<div><button class="get-result">获取结果</button><button onclick="sub();">提交表单</button></div>',
+                '<div class="result" id="result"></div>'
+            ];
+           jQuery('#logo').html(ah.join(''));
+           jQuery('#img').val("/"+data);
+           jQuery.getScript('http://www.haobao.com/frontend/js/addpict.js');
+          //alert(data);
+        }
+	});
+
+ /*$("#btnimg").ajaxStart(function(){
+     $(this).hide();
+　});
+
+ $("#btnimg").ajaxStop(function(){
+     $(this).show();
+　});*/
+
+
+});
+</script>
+</head>
+
+
+<body>
+	<!-- Header -->
+	<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><img SRC="/img/logo.png" alt="Administry" /><!--<span>Administry</span> demo--></div>
+			<!-- Top navigation -->
+			{% include "topnav.html" %}
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			{% include "nav.html" %}
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>海报</h1>
+			<!-- Quick search box -->
+		
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+				<section class="column width6 first">					
+					
+					<center>
+                    
+                    所属的杂志id:{{ mid }}
+                    
+                    <input name="mag" id="mag" value="{{ mid }}" type="hidden" >
+
+                  
+                    <div> 
+
+
+                    <div>
+                   海报标题<input type="text" name="title" id="title1"  /><br />
+                   email<input type="text" name="email" id="email"  /><br />
+                   海报描述<textarea name="des" id="des"></textarea><br />
+                   海报图片<input type="text" name="img" id="img"  /><br />
+                    </div>
+
+<table>
+<TR>
+	<TD class="tRight" >上传图片：</TD>
+	<TD class="tLeft" >
+    <div id="fileQueue"></div>
+<input type="file" name="uploadify" id="uploadify" />
+    </TD>
+</TR>
+
+<TR>
+	<TD class="tRight" >上传成功图片列表：</TD>
+	<TD class="tLeft" >
+    <div id='logo' style="width:auto;height:auto;"></div>
+    </TD>
+</TR>
+</table>
+              
+
+   
+              </div></center>
+					
+					
+					
+					<div class="clear">&nbsp;</div>
+					
+			
+
+<div class="clear">&nbsp;</div>
+					
+				</section>
+				<!-- End of Left column/section -->
+				
+				<!-- Right column/section -->
+				
+				<!-- End of Right column/section -->
+				
+		</div>
+		<!-- End of Wrapper -->
+	</div>
+	<!-- End of Page content -->
+	
+	<!-- Page footer -->
+	<footer id="bottom">
+		
+	</footer>
+	<!-- End of Page footer -->
+	
+	<!-- Animated footer -->
+	
+	<!-- End of Animated footer -->
+	
+	<!-- Scroll to top link -->
+	<a href="#" id="totop">^ scroll to top</a>
+
+<!-- User interface javascript load -->
+
+</body>
+</html>

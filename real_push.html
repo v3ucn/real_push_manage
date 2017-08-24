@@ -1,0 +1,30 @@
+<!DOCTYPE html>          
+<html>                           
+  <head>                                            
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Node JS</title>
+    <style type="text/css">                    
+      html , body {
+        font: normal 0.9em arial , helvetica;
+      }                     
+    </style> 
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript"> 
+    $(document).ready(function() {
+      var socket  = io.connect('http://localhost:3000');
+        
+      socket.on('real_push', function(data) {
+        var out = "";
+        $.each(data, function(i, obj) {
+          out += "<li>"+obj.name+" vv is: "+obj.allvv+"</li>";
+        });
+        $('#realpush').html(out);
+      });
+    });
+    </script>  
+  </head>                                                                                                                              
+  <body>
+    <ul id='realpush'></ul>
+  </body>                                                                                                                              
+</html> 
