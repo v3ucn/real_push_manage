@@ -1,0 +1,1453 @@
+{% load poll_extras %}
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8" />
+<title>我的范后台</title>
+<meta name="description" content="" />
+<meta   http-equiv= "pragma "   content= "no-cache ">
+<meta name="keywords" content="Admin,Template" />
+<!-- Favicons --> 
+<link rel="shortcut icon" type="image/png" HREF="/img/favicons/favicon.png"/>
+<link rel="icon" type="image/png" HREF="/img/favicons/favicon.png"/>
+<link rel="apple-touch-icon" HREF="/img/favicons/apple.png" />
+<!-- Main Stylesheet --> 
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
+<!-- Colour Schemes
+Default colour scheme is blue. Uncomment prefered stylesheet to use it.
+<link rel="stylesheet" href="/css/brown.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="/css/gray.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="/css/green.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/css/pink.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="/css/red.css" type="text/css" media="screen" />
+-->
+<!-- Your Custom Stylesheet --> 
+<link rel="stylesheet" href="/css/custom.css" type="text/css" />
+<!--swfobject - needed only if you require <video> tag support for older browsers -->
+<!-- jQuery with plugins -->
+<script type="text/javascript" SRC="/js/jquery-1.4.2.min.js"></script>
+<!-- Internet Explorer Fixes --> 
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
+<script src="/js/html5.js"></script>
+<![endif]-->
+<!--Upgrade MSIE5.5-7 to be compatible with MSIE8: http://ie7-js.googlecode.com/svn/version/2.1(beta3)/IE8.js -->
+<!--[if lt IE 8]>
+<script src="/js/IE8.js"></script>
+<![endif]-->
+<style>
+.manu { PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px; TEXT-ALIGN: center; font-size:12px;}
+
+.manu A {BORDER-RIGHT: #eee 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #eee 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; MARGIN: 2px; BORDER-LEFT: #eee 1px solid; COLOR: #036cb4; PADDING-TOP: 2px; BORDER-BOTTOM: #eee 1px solid; TEXT-DECORATION: none
+
+}
+
+.manu A:hover { BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; BORDER-LEFT: #999 1px solid; COLOR: #666; BORDER-BOTTOM: #999 1px solid}
+
+.manu A:active {BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; BORDER-LEFT: #999 1px solid; COLOR: #666; BORDER-BOTTOM: #999 1px solid}
+
+.manu .current {BORDER-RIGHT: #036cb4 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #036cb4 1px solid; PADDING-LEFT: 5px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; MARGIN: 2px; BORDER-LEFT: #036cb4 1px solid; COLOR: #fff; PADDING-TOP: 2px; BORDER-BOTTOM: #036cb4 1px solid; BACKGROUND-COLOR: #036cb4
+
+}
+
+.manu .disabled {BORDER-RIGHT: #eee 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #eee 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; MARGIN: 2px; BORDER-LEFT: #eee 1px solid; COLOR: #ddd; PADDING-TOP: 2px; BORDER-BOTTOM: #eee 1px solid
+
+}
+.cssraindemo2 tr {border:1px solid black;}
+</style>
+
+<script>
+var __APP__='{{ APP }}';
+</script>
+ <script type="text/javascript">
+ $(function() {
+	setTimeout(function(){
+		$.ajax({
+			type: "GET",
+			url: "http://www.wodfan.com/main/updateMain",
+			data: "id=123",
+			dataType: "html", 
+			success: function(msg){
+			}
+		});
+	}, 2000);
+	setTimeout(function(){
+		$.ajax({
+			type: "GET",
+			url: "http://www.wodfan.com/main/updateMain",
+			data: "id=123",
+			dataType: "html", 
+			success: function(msg){
+			}
+		});
+	}, 5000);
+	setTimeout(function(){
+		$.ajax({
+			type: "GET",
+			url: "http://www.wodfan.com/main/updateMain",
+			data: "id=123",
+			dataType: "html", 
+			success: function(msg){
+			}
+		});
+	}, 10000);
+
+     $('.cssraindemo2 input[type="checkbox"]:checked').attr("checked", false);
+     $("#selectall").click(function() {
+         $("input[name='shareuser[]']").each(function() {
+             $(this).attr("checked", true);
+             $('.cssraindemo2 tr').addClass('selected');
+         });
+     });
+     $("#deselectall").click(function() {
+         $("input[name='shareuser[]']").each(function() {
+             $(this).attr("checked", false);
+             $('.cssraindemo2 tr').removeClass('selected');
+         });
+     });
+ });
+ </script>
+
+     <SCRIPT LANGUAGE="JavaScript"> 
+   function DrawImage(ImgD,FitWidth,FitHeight){
+    var image=new Image();
+    image.src=ImgD.src;
+    if(image.width>0 && image.height>0){
+        if(image.width/image.height>= FitWidth/FitHeight){
+            if(image.width>FitWidth){
+                ImgD.width=FitWidth;
+                ImgD.height=(image.height*FitWidth)/image.width;
+            }else{
+                ImgD.width=image.width;
+                ImgD.height=image.height;
+            }
+        } else{
+            if(image.height>FitHeight){
+                ImgD.height=FitHeight;
+                ImgD.width=(image.width*FitHeight)/image.height;
+            }else{
+                ImgD.width=image.width;
+                ImgD.height=image.height;
+            }
+        }
+    }
+}
+    </SCRIPT> 
+
+
+<script>
+
+
+        function chakan1(id) {
+
+             
+             var lid=$("#did1"+id).val();
+			 var tid=$("#fan_id1_"+id).val();
+			 
+			 var url='';
+			 if(tid==0){
+			 
+			    url="/getmabi/";
+			 
+			 }else if(tid==1){
+			 
+			 url="/getmabi1/";
+			 
+			 
+			 }else{
+			 
+			 url="/getmabi2/";
+			 
+			 }
+           
+
+             
+
+             $.ajax({
+		type: "GET",
+		url: url,
+		data: "id="+lid,
+        dataType: "html", 
+		success: function(msg){
+		
+								
+     
+             jQuery("#tu1"+id).html("<img style='border:1px solid black'  src='"+msg+"' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />");
+
+
+
+             }
+				});
+
+
+            
+        }
+		
+		
+		function chakan5(id) {
+
+             
+             var lid=$("#did5"+id).val();
+			
+			 
+			
+			 
+			    url="/gettouxiang/";
+			 
+			
+			 
+		
+			 
+		
+           
+
+             
+
+             $.ajax({
+		type: "GET",
+		url: url,
+		data: "id="+lid,
+        dataType: "html", 
+		success: function(msg){
+		
+								
+     
+             jQuery("#tu5"+id).html("<img style='border:1px solid black'  src='"+msg+"' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />");
+
+
+
+             }
+				});
+
+
+            
+        }
+		
+		function chakan6(id) {
+
+             
+             var lid=$("#did6"+id).val();
+			
+			 
+			
+			 
+			    url="/gettouxiang/";
+			 
+			
+			 
+		
+			 
+		
+           
+
+             
+
+             $.ajax({
+		type: "GET",
+		url: url,
+		data: "id="+lid,
+        dataType: "html", 
+		success: function(msg){
+		
+								
+     
+             jQuery("#tu6"+id).html("<img style='border:1px solid black'  src='"+msg+"' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />");
+
+
+
+             }
+				});
+
+
+            
+        }
+		
+		function chakan51(id) {
+
+             
+             var url=$("#fan_id5_url_"+id).val();
+			
+			 
+			
+			 
+			    
+			 
+			
+			 
+
+             
+
+		
+								
+     
+             jQuery("#tu5"+id).html("<img style='border:1px solid black'  src='"+url+"' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />");
+
+
+
+             
+
+
+            
+        }
+		
+		function chakan61(id) {
+
+             
+             var url=$("#fan_id6_url_"+id).val();
+			
+			 
+			
+			 
+			    
+			 
+			
+			 
+
+             
+
+		
+								
+     
+             jQuery("#tu6"+id).html("<img style='border:1px solid black'  src='"+url+"' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />");
+
+
+
+             
+
+
+            
+        }
+
+        function chakan2(id) {
+
+             
+             var lid=$("#did2"+id).val();
+			 var tid=$("#fan_id2_"+id).val();
+			 
+			 var url='';
+			 if(tid==0){
+			 
+			    url="/getmabi/";
+			 
+			 }else if(tid==1){
+			 
+			 url="/getmabi1/";
+			 
+			 
+			 }else{
+			 
+			 url="/getmabi2/";
+			 
+			 }
+           
+
+             
+
+             $.ajax({
+		type: "GET",
+		url: url,
+		data: "id="+lid,
+        dataType: "html", 
+		success: function(msg){
+		
+								
+     
+             jQuery("#tu2"+id).html("<img style='border:1px solid black'  src='"+msg+"' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />");
+
+
+
+             }
+				});
+
+
+            
+        }
+
+       function chakan3(id) {
+
+             
+             var lid=$("#did3"+id).val();
+			 var tid=$("#fan_id3_"+id).val();
+			 
+			 var url='';
+			 if(tid==0){
+			 
+			    url="/getmabi/";
+			 
+			 }else if(tid==1){
+			 
+			 url="/getmabi1/";
+			 
+			 
+			 }else{
+			 
+			 url="/getmabi2/";
+			 
+			 }
+           
+
+             
+
+             $.ajax({
+		type: "GET",
+		url: url,
+		data: "id="+lid,
+        dataType: "html", 
+		success: function(msg){
+		
+								
+     
+             jQuery("#tu3"+id).html("<img style='border:1px solid black'  src='"+msg+"' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />");
+
+
+
+             }
+				});
+
+
+            
+        }
+
+        function chakan4(id) {
+
+             
+             var lid=$("#did4"+id).val();
+		
+			 
+		
+           
+
+             
+
+             $.ajax({
+		type: "GET",
+		url: "/getmabi3/",
+		data: "id="+lid,
+        dataType: "html", 
+		success: function(msg){
+		
+								
+     
+             jQuery("#tu4"+id).html("<img style='border:1px solid black'  src='"+msg+"' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />");
+
+
+
+             }
+				});
+
+
+            
+        }
+
+        
+        function xiupian(id) {
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/xiupian",
+		data: "id="+id,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+        function chen(id) {
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/chen/",
+		data: "id="+id,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+        function quchen(id) {
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/quchen/",
+		data: "id="+id,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+        function pass(id) {
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/pass",
+		data: "id="+id,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+        function kaqi(id) {
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/kaiqi/",
+		data: "id="+id,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+        function guanbi(id) {
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/guanbi/",
+		data: "id="+id,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+
+        function tipai(id) {
+
+
+        var sort=$("#sort"+id).val();
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/tipai/",
+		data: "id="+id+"&sort="+sort,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+        function background(id) {
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/beijing",
+		data: "id="+id,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+        function tuidapei(id,image_id,isset) {
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/tuidapei/",
+		data: "id="+id+"&image_id="+image_id+"&isset="+isset,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+        function pixiu() {
+
+           var positions = '';
+        $.each($('input[name=shareuser[]]:checked') ,function(i,item){
+        positions+=$(item).val()+',';
+      })
+      if(positions){
+        positions = positions.substring(0,positions.length-1)
+      }
+      if(positions==''){
+      alert('请选择一下！');
+      }else{
+
+
+           $.ajax({
+		type: "GET",
+		url: "/pixiu",
+		data: "id="+positions,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+      
+
+      }
+
+
+
+        
+        
+        
+        }
+        function pipass() {
+
+           var positions = '';
+        $.each($('input[name=shareuser[]]:checked') ,function(i,item){
+        positions+=$(item).val()+',';
+      })
+      if(positions){
+        positions = positions.substring(0,positions.length-1)
+      }
+      if(positions==''){
+      alert('请选择一下！');
+      }else{
+
+
+           $.ajax({
+		type: "GET",
+		url: "/pipass",
+		data: "id="+positions,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+      
+
+      }
+
+
+
+        
+        
+        
+        }
+
+
+        function pibei() {
+
+           var positions = '';
+        $.each($('input[name=shareuser[]]:checked') ,function(i,item){
+        positions+=$(item).val()+',';
+      })
+      if(positions){
+        positions = positions.substring(0,positions.length-1)
+      }
+      if(positions==''){
+      alert('请选择一下！');
+      }else{
+
+
+           $.ajax({
+		type: "GET",
+		url: "/pibei",
+		data: "id="+positions,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+      
+
+      }
+
+
+
+        
+        
+        
+        }
+
+
+
+</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+$(document).ready(function(){
+
+
+//demo2:
+
+	$('.cssraindemo2 tbody tr').hover(
+        
+		function() {$(this).addClass('highlight');},
+		function() {$(this).removeClass('highlight');}
+	);
+
+     // 如果复选框默认情况下是选择的，变色.
+	$('.cssraindemo2 input[type="checkbox"]:checked').parents('tr').addClass('selected');
+	// 复选框
+	$('.cssraindemo2 tbody tr').click(
+		function() {
+			if ($(this).hasClass('selected')) {
+				$(this).removeClass('selected');
+				$(this).find('input[type="checkbox"]').removeAttr('checked');
+			} else {
+				$(this).addClass('selected');
+				$(this).find('input[type="checkbox"]').attr('checked','checked');
+			}
+		}
+	);
+
+	
+
+
+});
+
+
+//-->
+</SCRIPT>
+<style>
+tr.highlight	{ background:#6F4FFF;}
+tr.selected		{ background:#aaaaaa;color:#fff;}
+</style>
+</head>
+
+
+<body>
+	<!-- Header -->
+	<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><img SRC="/img/logo.png" alt="Administry" /><!--<span>Administry</span> demo--></div>
+			<!-- Top navigation -->
+			<div id="topnav">
+				<a href="#"><img class="avatar" SRC="/img/user_32.png" alt="" /></a>
+				Logged in as <b>Admin</b>
+				<span>|</span> <a href="#">Settings</a>
+				<span>|</span> <a href="#">Logout</a><br />
+				<small>You have <a href="#" class="high"><b>1</b> new message!</a></small>
+			</div>
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			{% include "nav.html" %}
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+        			<h1>
+
+              
+             <span {% if nav == 54  %} class="hover" {% endif %} ><a HREF="/shoupei/">首页的设置</a></span>
+
+   
+            </h1>
+            
+			<!-- Quick search box -->
+			
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+              <center><div> 
+             
+             
+              
+            
+              </div></center>
+              
+              
+              
+              右上角三个
+			<div style="clear:both"></div>				
+					<div class="cssraindemo2">
+
+                    <form method="GET" action="/updateform5">
+					{% for key in row5 %}
+					
+                    
+                    <div style="width:280px;height:450px;overflow:hidden;float:left;border-top:1px solid black;margin-top:8px;border-right:1px solid black;">
+					<table style="width:280px;height:450px;overflow:hidden;">
+						
+						<tbody>
+
+                        <tr>
+                            <td>
+ <center> 
+
+
+                    <select name="fan_id5_{{ forloop.counter }}" id="fan_id5_{{ forloop.counter }}">
+                   
+                  
+              
+         <option value="0" {% if key.6 == 0 %} selected=selected {% endif %}      >达人</option>
+                      <option value="1" {% if key.6 == 1 %} selected=selected {% endif %}      >饭团儿</option>
+                    </select>
+                                                                             
+
+<br />
+                           输入用户id <input style="width:50px;" type="text" value="{{ key.1 }}" name="did5{{ forloop.counter }}" id="did5{{ forloop.counter }}"   />
+                           <input onClick="chakan5({{ forloop.counter }})" type="button" value="查看用户头像"  /> 
+                           <br />如果是饭团儿则上面的用户id不用填<br />
+                           
+                           
+                           范团儿名:<input type="text" value="{{ key.4 }}" name="did5_search_{{ forloop.counter }}" id="did5_search_{{ forloop.counter }}"   /><br />
+                           描述:<textarea name="did5_word_{{ forloop.counter }}" id="did5_word_{{ forloop.counter }}" >{{ key.3 }}</textarea><br />
+                           
+                           <select name="fan_id5_url_{{ forloop.counter }}" id="fan_id5_url_{{ forloop.counter }}">
+                   
+                  
+              
+         <option value="http://www.haobao.com/frontend_black/images/tag/1.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/1.jpg' %} selected=selected {% endif %}      >1.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/2.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/2.jpg' %} selected=selected {% endif %}      >2.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/3.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/3.jpg' %} selected=selected {% endif %}      >3.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/4.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/4.jpg' %} selected=selected {% endif %}      >4.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/5.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/5.jpg' %} selected=selected {% endif %}      >5.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/6.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/6.jpg' %} selected=selected {% endif %}      >6.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/7.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/7.jpg' %} selected=selected {% endif %}      >7.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/8.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/8.jpg' %} selected=selected {% endif %}      >8.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/9.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/9.jpg' %} selected=selected {% endif %}      >9.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/10.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/10.jpg' %} selected=selected {% endif %}      >10.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/11.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/11.jpg' %} selected=selected {% endif %}      >11.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/12.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/12.jpg' %} selected=selected {% endif %}      >12.jpg</option>
+                      
+                    </select>
+                           
+                           <input onClick="chakan51({{ forloop.counter }})" type="button" value="查看选择图片"  /> 
+                           
+                           <br />
+                           &nbsp;<input type="submit" value="提交">
+<input type="hidden" name="rid5{{ forloop.counter }}" value="{{ key.0 }}" />
+                            
+                            </center>
+                            </td>
+
+                            
+                            </tr>
+                        
+							<tr>
+                           
+                                                                                             
+
+								<td class="hhcc">
+                                
+                                <div id="tu5{{ forloop.counter }}">
+                                
+                                
+
+                                <img style='border:1px solid black'  src='{{ key.0|mabi1 }}' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />
+
+                                </div>
+                                
+                                </td>
+								                     
+                            
+							</tr>
+
+						
+						</tbody>
+					</table>
+
+
+
+                    </div>
+						{% endfor %}
+
+                        <br />
+                        <input type="submit" value="提交此三个的修改">
+                        </form>
+
+
+
+
+                        </div>
+
+                     <div style="clear:both;"></div>
+                     
+                     
+                     
+                     中间四个小的
+			<div style="clear:both"></div>				
+					<div class="cssraindemo2">
+
+                    <form method="GET" action="/updateform6">
+					{% for key in row6 %}
+					
+                    
+                    <div style="width:220px;height:450px;overflow:hidden;float:left;border-top:1px solid black;margin-top:8px;border-right:1px solid black;">
+					<table style="width:220px;height:450px;overflow:hidden;">
+						
+						<tbody>
+
+                        <tr>
+                            <td>
+ <center> 
+
+
+                    <select name="fan_id6_{{ forloop.counter }}" id="fan_id6_{{ forloop.counter }}">
+                   
+                  
+              
+         <option value="0" {% if key.6 == 0 %} selected=selected {% endif %}      >达人</option>
+                      <option value="1" {% if key.6 == 1 %} selected=selected {% endif %}      >饭团儿</option>
+                    </select>
+                                                                             
+
+<br />
+                           输入用户id <input style="width:50px;" type="text" value="{{ key.1 }}" name="did6{{ forloop.counter }}" id="did6{{ forloop.counter }}"   />
+                           <input onClick="chakan6({{ forloop.counter }})" type="button" value="查看用户头像"  /> 
+                           <br />如果是饭团儿则上面的用户id不用填<br />
+                           
+                           
+                           范团儿名:<input type="text" value="{{ key.4 }}" name="did6_search_{{ forloop.counter }}" id="did6_search_{{ forloop.counter }}"   /><br />
+                           描述:<textarea name="did6_word_{{ forloop.counter }}" id="did6_word_{{ forloop.counter }}" >{{ key.3 }}</textarea><br />
+                           
+                           <select name="fan_id6_url_{{ forloop.counter }}" id="fan_id6_url_{{ forloop.counter }}">
+                   
+                  
+              
+         <option value="http://www.haobao.com/frontend_black/images/tag/1.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/1.jpg' %} selected=selected {% endif %}      >1.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/2.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/2.jpg' %} selected=selected {% endif %}      >2.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/3.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/3.jpg' %} selected=selected {% endif %}      >3.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/4.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/4.jpg' %} selected=selected {% endif %}      >4.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/5.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/5.jpg' %} selected=selected {% endif %}      >5.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/6.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/6.jpg' %} selected=selected {% endif %}      >6.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/7.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/7.jpg' %} selected=selected {% endif %}      >7.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/8.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/8.jpg' %} selected=selected {% endif %}      >8.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/9.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/9.jpg' %} selected=selected {% endif %}      >9.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/10.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/10.jpg' %} selected=selected {% endif %}      >10.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/11.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/11.jpg' %} selected=selected {% endif %}      >11.jpg</option>
+         
+         <option value="http://www.haobao.com/frontend_black/images/tag/12.jpg" {% if key.5 == 'http://www.haobao.com/frontend_black/images/tag/12.jpg' %} selected=selected {% endif %}      >12.jpg</option>
+                      
+                    </select>
+                           
+                           <input onClick="chakan61({{ forloop.counter }})" type="button" value="查看选择图片"  /> 
+                           
+                           <br />
+                           &nbsp;<input type="submit" value="提交">
+<input type="hidden" name="rid6{{ forloop.counter }}" value="{{ key.0 }}" />
+                            
+                            </center>
+                            </td>
+
+                            
+                            </tr>
+                        
+							<tr>
+                           
+                                                                                             
+
+								<td class="hhcc">
+                                
+                                <div id="tu6{{ forloop.counter }}">
+                                
+                                
+
+                                <img style='border:1px solid black'  src='{{ key.0|mabi1 }}' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />
+
+                                </div>
+                                
+                                </td>
+								                     
+                            
+							</tr>
+
+						
+						</tbody>
+					</table>
+
+
+
+                    </div>
+						{% endfor %}
+
+                        <br />
+                        <input type="submit" value="提交此四个的修改">
+                        </form>
+
+
+
+
+                        </div>
+
+                     <div style="clear:both;"></div>
+              
+              
+              
+              
+              前八个
+			<div style="clear:both"></div>				
+					<div class="cssraindemo2">
+
+                    <form method="GET" action="/updateform1">
+					{% for key in row1 %}
+					
+                    
+                    <div style="width:200px;height:350px;overflow:hidden;float:left;border-top:1px solid black;margin-top:8px;border-right:1px solid black;">
+					<table style="width:200px;height:300px;overflow:hidden;">
+						
+						<tbody>
+
+                        <tr>
+                            <td>
+ <center> 
+
+
+                    <select name="fan_id1_{{ forloop.counter }}" id="fan_id1_{{ forloop.counter }}">
+                   
+                  
+              
+         <option value="2" {% if key.2 == 2 %} selected=selected {% endif %}      >单品</option>
+                      <option value="1" {% if key.2 == 1 %} selected=selected {% endif %}      >达人范</option>
+                     <option value="0" {% if key.2 == 0 %} selected=selected {% endif %}      >范团儿</option>
+                    </select>
+                                                                             
+
+<br />
+                           输入id <input type="text" value="{{ key.1 }}" name="did1{{ forloop.counter }}" id="did1{{ forloop.counter }}"   /><input onClick="chakan1({{ forloop.counter }})" type="button" value="查看"  /> &nbsp;<input type="submit" value="提交">
+<input type="hidden" name="rid1{{ forloop.counter }}" value="{{ key.0 }}" />
+                            
+                            </center>
+                            </td>
+
+                            
+                            </tr>
+                        
+							<tr>
+                           
+                                                                                             
+
+								<td class="hhcc">
+                                
+                                <div id="tu1{{ forloop.counter }}">
+                                
+                                
+
+                                <img style='border:1px solid black'  src='{{ key.1|mabi:key.2 }}' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />
+
+                                </div>
+                                
+                                </td>
+								                     
+                            
+							</tr>
+
+						
+						</tbody>
+					</table>
+
+
+
+                    </div>
+						{% endfor %}
+
+                        <br />
+                        <input type="submit" value="提交此八个的修改">
+                        </form>
+
+
+
+
+                        </div>
+
+                     <div style="clear:both;"></div>
+                     
+                     
+                     达人范
+                     <div style="clear:both"></div>				
+					<div class="cssraindemo2">
+
+                    <form method="GET" action="/updateform2">
+					{% for key in row2 %}
+					
+                    
+                    <div style="width:200px;height:350px;overflow:hidden;float:left;border-top:1px solid black;margin-top:8px;border-right:1px solid black;">
+					<table style="width:200px;height:300px;overflow:hidden;">
+						
+						<tbody>
+
+                        <tr>
+                            <td>
+ <center> 
+
+
+                    <select name="fan_id2_{{ forloop.counter }}" id="fan_id2_{{ forloop.counter }}">
+                   
+                  
+              
+         <option value="2" {% if key.2 == 2 %} selected=selected {% endif %}      >单品</option>
+                      <option value="1" {% if key.2 == 1 %} selected=selected {% endif %}      >达人范</option>
+                     <option value="0" {% if key.2 == 0 %} selected=selected {% endif %}      >范团儿</option>
+                    </select>
+                                                                             
+
+<br />
+                           输入id <input type="text" value="{{ key.1 }}" name="did2{{ forloop.counter }}" id="did2{{ forloop.counter }}"   /><input onClick="chakan2({{ forloop.counter }})" type="button" value="查看"  />&nbsp;<input type="submit" value="提交">
+<input type="hidden" name="rid2{{ forloop.counter }}" value="{{ key.0 }}" />
+                            
+                            </center>
+                            </td>
+
+                            
+                            </tr>
+                        
+							<tr>
+                           
+                                                                                             
+
+								<td class="hhcc">
+                                
+                                <div id="tu2{{ forloop.counter }}">
+                                
+                                
+
+                                <img style='border:1px solid black'  src='{{ key.1|mabi:key.2 }}' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />
+
+                                </div>
+                                
+                                </td>
+								                     
+                            
+							</tr>
+
+						
+						</tbody>
+					</table>
+
+
+
+                    </div>
+						{% endfor %}
+
+                        <br />
+                        <input type="submit" value="提交此四个的修改">
+                        </form>
+
+
+
+
+                        </div>
+
+                     <div style="clear:both;"></div>
+                     
+                     
+                     
+                      范团儿
+                     <div style="clear:both"></div>				
+					<div class="cssraindemo2">
+
+                    <form method="GET" action="/updateform3">
+					{% for key in row3 %}
+					
+                    
+                    <div style="width:200px;height:350px;overflow:hidden;float:left;border-top:1px solid black;margin-top:8px;border-right:1px solid black;">
+					<table style="width:200px;height:300px;overflow:hidden;">
+						
+						<tbody>
+
+                        <tr>
+                            <td>
+ <center> 
+
+
+                    <select name="fan_id3_{{ forloop.counter }}" id="fan_id3_{{ forloop.counter }}">
+                   
+                  
+              
+         <option value="2" {% if key.2 == 2 %} selected=selected {% endif %}      >单品</option>
+                      <option value="1" {% if key.2 == 1 %} selected=selected {% endif %}      >达人范</option>
+                     <option value="0" {% if key.2 == 0 %} selected=selected {% endif %}      >范团儿</option>
+                    </select>
+                                                                             
+
+<br />
+                           输入id <input type="text" value="{{ key.1 }}" name="did3{{ forloop.counter }}" id="did3{{ forloop.counter }}"   /><input onClick="chakan3({{ forloop.counter }})" type="button" value="查看"  />&nbsp;<input type="submit" value="提交">
+<input type="hidden" name="rid3{{ forloop.counter }}" value="{{ key.0 }}" />
+                            
+                            </center>
+                            </td>
+
+                            
+                            </tr>
+                        
+							<tr>
+                           
+                                                                                             
+
+								<td class="hhcc">
+                                
+                                <div id="tu3{{ forloop.counter }}">
+                                
+                                
+
+                                <img style='border:1px solid black'  src='{{ key.1|mabi:key.2 }}' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />
+
+                                </div>
+                                
+                                </td>
+								                     
+                            
+							</tr>
+
+						
+						</tbody>
+					</table>
+
+
+
+                    </div>
+						{% endfor %}
+
+                        <br />
+                        <input type="submit" value="提交此四个的修改">
+                        </form>
+
+
+
+
+                        </div>
+
+                     <div style="clear:both;"></div>
+                     
+                     
+                     范问答
+                     <div style="clear:both"></div>				
+					<div class="cssraindemo2">
+
+                    <form method="GET" action="/updateform4">
+					{% for key in row4 %}
+					
+                    
+                    <div style="width:200px;height:350px;overflow:hidden;float:left;border-top:1px solid black;margin-top:8px;border-right:1px solid black;">
+					<table style="width:200px;height:300px;overflow:hidden;">
+						
+						<tbody>
+
+                        <tr>
+                            <td>
+ <center> 
+
+
+                    <select name="fan_id4_{{ forloop.counter }}" id="fan_id4_{{ forloop.counter }}">
+                   
+                  
+              
+         <option value="3"  selected=selected      >范问答</option>
+                 
+                    </select>
+                                                                             
+
+<br />
+                           输入id <input type="text" value="{{ key.1 }}" name="did4{{ forloop.counter }}" id="did4{{ forloop.counter }}"   /><input onClick="chakan4({{ forloop.counter }})" type="button" value="查看"  />&nbsp;<input type="submit" value="提交">
+<input type="hidden" name="rid4{{ forloop.counter }}" value="{{ key.0 }}" />
+                            
+                            </center>
+                            </td>
+
+                            
+                            </tr>
+                        
+							<tr>
+                           
+                                                                                             
+
+								<td class="hhcc">
+                                
+                                <div id="tu4{{ forloop.counter }}">
+                                
+                                
+
+                                <img style='border:1px solid black'  src='{{ key.1|mabi:key.2 }}' width='200' height='200'  onload='javascript:DrawImage(this,200,200);'    />
+
+                                </div>
+                                
+                                </td>
+								                     
+                            
+							</tr>
+
+						
+						</tbody>
+					</table>
+
+
+
+                    </div>
+						{% endfor %}
+
+                        <br />
+                        <input type="submit" value="提交此三个的修改">
+                        </form>
+
+
+
+
+                        </div>
+
+                     <div style="clear:both;"></div>
+
+
+
+
+
+
+
+                        <!--结束-->
+
+
+
+
+                        </div>
+
+
+<!--结束-->
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+
+                     <div style="clear:both;"></div>
+
+
+
+
+
+                     
+     
+
+       
+                      
+
+
+
+
+			<div style="clear:both"></div>		
+					<div class="clear">&nbsp;</div>
+					
+
+		<!-- End of Wrapper -->
+	</div>
+	<!-- End of Page content -->
+	
+	<!-- Page footer -->
+	<footer id="bottom">
+		
+	</footer>
+	<!-- End of Page footer -->
+	
+	<!-- Animated footer -->
+	
+	<!-- End of Animated footer -->
+	
+	<!-- Scroll to top link -->
+	<a href="#" id="totop">^ scroll to top</a>
+
+<!-- User interface javascript load -->
+</body>
+</html>

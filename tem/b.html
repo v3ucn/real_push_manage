@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8" />
+<title>我的范后台</title>
+<meta name="description" content="" />
+<meta   http-equiv= "pragma "   content= "no-cache ">
+<meta name="keywords" content="Admin,Template" />
+<!-- Favicons --> 
+<link rel="shortcut icon" type="image/png" HREF="/img/favicons/favicon.png"/>
+<link rel="icon" type="image/png" HREF="/img/favicons/favicon.png"/>
+<link rel="apple-touch-icon" HREF="/img/favicons/apple.png" />
+<!-- Main Stylesheet --> 
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
+<!-- Colour Schemes
+Default colour scheme is blue. Uncomment prefered stylesheet to use it.
+<link rel="stylesheet" href="/css/brown.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="/css/gray.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="/css/green.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/css/pink.css" type="text/css" media="screen" />  
+<link rel="stylesheet" href="/css/red.css" type="text/css" media="screen" />
+-->
+<!-- Your Custom Stylesheet --> 
+<link rel="stylesheet" href="/css/custom.css" type="text/css" />
+<!--swfobject - needed only if you require <video> tag support for older browsers -->
+<!-- jQuery with plugins -->
+<script type="text/javascript" SRC="/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" SRC="/js/My97DatePicker/WdatePicker.js"></script>
+<!-- Internet Explorer Fixes --> 
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" media="all" href="/css/ie.css"/>
+<script src="/js/html5.js"></script>
+<![endif]-->
+<!--Upgrade MSIE5.5-7 to be compatible with MSIE8: http://ie7-js.googlecode.com/svn/version/2.1(beta3)/IE8.js -->
+<!--[if lt IE 8]>
+<script src="/js/IE8.js"></script>
+<![endif]-->
+<style>
+.manu { PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px; TEXT-ALIGN: center; font-size:12px;}
+
+.manu A {BORDER-RIGHT: #eee 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #eee 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; MARGIN: 2px; BORDER-LEFT: #eee 1px solid; COLOR: #036cb4; PADDING-TOP: 2px; BORDER-BOTTOM: #eee 1px solid; TEXT-DECORATION: none
+
+}
+
+.manu A:hover { BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; BORDER-LEFT: #999 1px solid; COLOR: #666; BORDER-BOTTOM: #999 1px solid}
+
+.manu A:active {BORDER-RIGHT: #999 1px solid; BORDER-TOP: #999 1px solid; BORDER-LEFT: #999 1px solid; COLOR: #666; BORDER-BOTTOM: #999 1px solid}
+
+.manu .current {BORDER-RIGHT: #036cb4 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #036cb4 1px solid; PADDING-LEFT: 5px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; MARGIN: 2px; BORDER-LEFT: #036cb4 1px solid; COLOR: #fff; PADDING-TOP: 2px; BORDER-BOTTOM: #036cb4 1px solid; BACKGROUND-COLOR: #036cb4
+
+}
+
+.manu .disabled {BORDER-RIGHT: #eee 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #eee 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; MARGIN: 2px; BORDER-LEFT: #eee 1px solid; COLOR: #ddd; PADDING-TOP: 2px; BORDER-BOTTOM: #eee 1px solid
+
+}
+</style>
+<script>
+var __APP__='{{ APP }}';
+var nowdate='{{ date1 }}';
+</script>
+ <script type="text/javascript">
+ $(function() {
+
+     $('.cssraindemo2 input[type="checkbox"]:checked').attr("checked", false);
+     $("#selectall").click(function() {
+         $("input[name='shareuser[]']").each(function() {
+             $(this).attr("checked", true);
+             $('.cssraindemo2 tr').addClass('selected');
+         });
+     });
+     $("#deselectall").click(function() {
+         $("input[name='shareuser[]']").each(function() {
+             $(this).attr("checked", false);
+             $('.cssraindemo2 tr').removeClass('selected');
+         });
+     });
+ });
+ </script>
+<script>
+
+function tiao() {
+            
+        
+        var vs = $("#tiao").val()
+        if(vs == ''){
+
+          alert('页码不能为空');
+          return false;
+
+        }
+
+        var vc='{{ date }}';
+
+        window.location.href="/b?page="+vs+""+vc;
+        
+        }
+
+
+function down() {
+
+    
+
+        //alert(userid);
+           $.ajax({
+		type: "GET",
+		url: "/down/",
+		data: "type=2&cc=all",
+        dataType: "html", 
+		success: function(msg){
+
+        window.open(msg);
+
+       
+								}
+				});
+      
+
+      
+
+
+
+        
+        
+        
+        }
+
+
+        function down1() {
+
+    
+
+        //alert(userid);
+
+        $("#selectall").click();
+        var positions = '';
+        $.each($('input[name=shareuser[]]:checked') ,function(i,item){
+        positions+=$(item).val()+',';
+      })
+      if(positions){
+        positions = positions.substring(0,positions.length-1)
+      }
+      if(positions==''){
+      alert('请选择一下！');
+      return false;
+      }
+
+
+
+
+           $.ajax({
+		type: "GET",
+		url: "/down/",
+		data: "type=2&cc=all&ccs="+positions,
+        dataType: "html", 
+		success: function(msg){
+
+        window.open(msg);
+
+								}
+				});
+      
+
+      
+
+
+
+        
+        
+        
+        }
+
+
+        function down2() {
+
+        //alert(nowdate);return false;
+
+    
+           $.ajax({
+		type: "GET",
+		url: "/down2/",
+		data: "type=2&date="+nowdate,
+        dataType: "html", 
+		success: function(msg){
+
+        window.open(msg);
+
+								}
+				});
+      
+        
+        }
+
+        
+        function xiupian(id) {
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/xiupian",
+		data: "id="+id,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+        function pass(id) {
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/pass",
+		data: "id="+id,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+        function background(id) {
+            
+        
+        $.ajax({
+		type: "GET",
+		url: "/beijing",
+		data: "id="+id,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+        
+        }
+
+        function pixiu() {
+
+           var positions = '';
+        $.each($('input[name=shareuser[]]:checked') ,function(i,item){
+        positions+=$(item).val()+',';
+      })
+      if(positions){
+        positions = positions.substring(0,positions.length-1)
+      }
+      if(positions==''){
+      alert('请选择一下！');
+      }else{
+
+
+           $.ajax({
+		type: "GET",
+		url: "/pixiu",
+		data: "id="+positions,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+      
+
+      }
+
+
+
+        
+        
+        
+        }
+        function pipass() {
+
+           var positions = '';
+        $.each($('input[name=shareuser[]]:checked') ,function(i,item){
+        positions+=$(item).val()+',';
+      })
+      if(positions){
+        positions = positions.substring(0,positions.length-1)
+      }
+      if(positions==''){
+      alert('请选择一下！');
+      }else{
+
+
+           $.ajax({
+		type: "GET",
+		url: "/pipass",
+		data: "id="+positions,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+      
+
+      }
+
+
+
+        
+        
+        
+        }
+
+
+        function fenpei() {
+
+           var positions = '';
+           var userid = $('#fenpei').val();
+        $.each($('input[name=shareuser[]]:checked') ,function(i,item){
+        positions+=$(item).val()+',';
+      })
+      if(positions){
+        positions = positions.substring(0,positions.length-1)
+      }
+      if(positions==''){
+      alert('请选择一下！');
+      }else if(userid==0){
+
+        alert('请选择任务人！');
+      
+      }else{
+
+        //alert(userid);
+           $.ajax({
+		type: "GET",
+		url: "/fenpeib",
+		data: "id="+positions+"&userid="+userid,
+        dataType: "html", 
+		success: function(msg){
+		if(msg=='ok'){
+        window.location.reload();
+        }else{
+         alert('失败');
+        }
+								}
+				});
+      
+
+      }
+
+
+
+        
+        
+        
+        }
+
+
+
+</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+$(document).ready(function(){
+
+
+//demo2:
+
+	$('.cssraindemo2 tbody tr').hover(
+        
+		function() {$(this).addClass('highlight');},
+		function() {$(this).removeClass('highlight');}
+	);
+
+     // 如果复选框默认情况下是选择的，变色.
+	$('.cssraindemo2 input[type="checkbox"]:checked').parents('tr').addClass('selected');
+	// 复选框
+	$('.cssraindemo2 tbody tr').click(
+		function() {
+			if ($(this).hasClass('selected')) {
+				$(this).removeClass('selected');
+				$(this).find('input[type="checkbox"]').removeAttr('checked');
+			} else {
+				$(this).addClass('selected');
+				$(this).find('input[type="checkbox"]').attr('checked','checked');
+			}
+		}
+	);
+
+	
+
+
+});
+
+
+//-->
+</SCRIPT>
+<style>
+tr.highlight	{ background:#FFECF5;}
+tr.selected		{ background:#aaaaaa;color:#fff;}
+</style>
+</head>
+
+
+<body>
+	<!-- Header -->
+	<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><img SRC="/img/logo.png" alt="Administry" /><!--<span>Administry</span> demo--></div>
+			<!-- Top navigation -->
+			{% include "topnav.html" %}
+			<!-- End of Top navigation -->
+			<!-- Main navigation -->
+			{% include "nav.html" %}
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			
+			<!-- End of Aside links -->
+		</div>
+	</header>
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>标记需要的单品图片</h1>
+			<!-- Quick search box -->
+			<form action="" method="get"><input class="" type="text" id="q" name="q" /></form>
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+				<!-- Left column/section -->
+              <center><div> 
+              
+              
+              <div id="div3"></div><br />
+              <h1>当前选择的日期为{{ date1 }}</h1>
+<script>
+WdatePicker({eCont:'div3',onpicked:function(dp){window.location.href="/b?date="+dp.cal.getDateStr();}})
+</script>
+              
+              <input type="button" id="selectall" name="selectall" value="全选" /> <input type="button" id="deselectall" name="deselectall" value="取消全选" />
+
+              <select id="fenpei">
+              <option value="0">选择任务人</option>
+              {% for key in userlist %}
+              <option value="{{ key.id }}">{{ key.nickname }}</option>
+              {% endfor %}
+              </select>
+              <input type="button" onclick="fenpei();" value="点击分配" />
+              <input type="button" onclick="down();" value="点击下载所有背景任务图片" \/>
+              <input type="button" onclick="down1();" value="只下载本页的背景任务图片" \/>
+              <input type="button" onclick="down2({{ date1 }});" value="只下载{{ date1 }}的修片任务图片" \/>
+      
+              </div></center>
+			<div style="clear:both"></div>				
+					<div class="cssraindemo2">
+					{% for book in books.object_list %}
+					<div style="width:330px;height:163px;overflow:hidden;float:left;">
+					<table style="width:330px;height:163px;overflow:hidden;">
+						
+						<tbody>
+                        
+							<tr>
+                                <td>
+                                 <input type='checkbox' id='share{{ book.item_id }}' name='shareuser[]' value='{{ book.item_id }}' />
+                                </td>
+								<td>
+									{{ book.title }}
+								</td>
+                                {% load poll_extras %} 
+								<td><img src="/images/{{ book.item_id|lower123 }}" border="0" width="50" height="70" /></td>
+								<td><a href="/images/{{ book.item_id|lower123 }}" target="_blank">查看原图</a></td>
+                                <td><a href="javascript:void(0)"  onclick="pass({{ book.item_id }})">通过</a></td>
+							</tr>
+						
+						</tbody>
+					</table>
+                    </div>
+						{% endfor %}
+                        </div>
+
+                     <div style="clear:both;"></div>
+
+                      <center><div> <input type="button" id="selectall" name="selectall" value="全选" /> <input type="button" id="deselectall" name="deselectall" value="取消全选" />
+                       
+                      </div></center>
+			<div style="clear:both"></div>		
+					<div class="clear">&nbsp;</div>
+					
+			<div class="manu">
+<a href="/b?page=1{{ date }}">&lt; 首页</a>
+{% if books.has_previous %}
+
+<a href="/b?page={{ books.previous_page_number }}{{ date }}">&lt; 上一页</a>
+
+{% endif %}
+
+<span>
+
+{% for p in page_range %}
+
+{% ifequal p books.number %}
+
+<span class="current">{{p}}</span>
+
+{% else %}
+
+<a href="/b?page={{p}}{{ date }}" title="第{{p}}页">{{p}}</a>
+
+{% endifequal %}
+
+{% endfor %}
+
+</span>
+
+{% if books.has_next %}
+
+<a href="/b?page={{ books.next_page_number }}{{ date }}">下一页 &gt; </a>
+
+{% endif %}
+<a href="?page={{ books.paginator.num_pages }}{{ date }}">&lt; 尾页</a>
+<a >[第{{ books.number }}/{{ books.paginator.num_pages }}页]</a>
+请输入页码:<input type="text" id="tiao" /><input type="button" value="跳" onclick="tiao();" />
+</div>
+
+<div class="clear">&nbsp;</div>
+					
+				</section>
+				<!-- End of Left column/section -->
+				
+				<!-- Right column/section -->
+				
+				<!-- End of Right column/section -->
+				
+		</div>
+		<!-- End of Wrapper -->
+	</div>
+	<!-- End of Page content -->
+	
+	<!-- Page footer -->
+	<footer id="bottom">
+		
+	</footer>
+	<!-- End of Page footer -->
+	
+	<!-- Animated footer -->
+	
+	<!-- End of Animated footer -->
+	
+	<!-- Scroll to top link -->
+	<a href="#" id="totop">^ scroll to top</a>
+
+<!-- User interface javascript load -->
+</body>
+</html>
